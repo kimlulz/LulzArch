@@ -1,6 +1,9 @@
 # LulzArch
 
+arch-chroot /mnt
+pacman -Syu
 ## Mirrorlist
+pacman -S wget
 wget https://raw.githubusercontent.com/kimlulz/LulzArch/main/mirrorlist -P /etc/pacman.d
 
 ```
