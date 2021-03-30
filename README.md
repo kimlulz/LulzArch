@@ -1,7 +1,7 @@
 # LulzArch
 
 ## Mirrorlist
-wget https://raw.githubusercontent.com/kimlulz/LulzArch/main/mirrorlist -P /etc/pacman.d/mirrorlist
+wget https://raw.githubusercontent.com/kimlulz/LulzArch/main/mirrorlist -P /etc/pacman.d
 
 ```
 ##
