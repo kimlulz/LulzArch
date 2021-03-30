@@ -33,8 +33,8 @@ mkdir /mnt/boot // Make boot directory
 mount /dev/sda1 /mnt/boot // Mount efi partition
 ```
 ### Install base packages
-Essential - base linux linux-firmware
-Choice - nano/vim networkmanager/dhcpd
+Essential - base linux linux-firmware     
+Choice - nano/vim networkmanager/dhcpd     
 `pacstrap /mnt base linux linux-firmware nano networkmanager base-devel man-db man-pages texinfo dosfstools e2fsprogs`    
 ### Generate UUID
 `genfstab -U /mnt >> /mnt/etc/fstab`   
