@@ -62,6 +62,7 @@ Choice - nano/vim networkmanager/dhcpd
 %wheel ALL= 
 ```
 ### Install bootloader (Grub, EFIBootloader)
+```
 pacman -S grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -70,12 +71,13 @@ systemctl enable NetworkManager
 exit
 umount -lr /mnt
 reboot
+```
 
 ## BOOT
 ### Mirrorlist
-pacman -S wget
+`pacman -S wget`     
 
-wget https://raw.githubusercontent.com/kimlulz/LulzArch/main/mirrorlist -P /etc/pacman.d
+`wget https://raw.githubusercontent.com/kimlulz/LulzArch/main/mirrorlist -P /etc/pacman.d`     
 
 ```
 ##
