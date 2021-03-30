@@ -104,10 +104,10 @@ pacman -S --needed plasma kde-applications
 sudo systemctl enable sddm
 sudo systemctl enable NetworkManager
 ```
-sudo nano /usr/lib/sddm/sddm.conf.d/default.conf
+`sudo nano /usr/lib/sddm/sddm.conf.d/default.conf`    
 ```
 [Theme]
 # current theme name
  Current=breeze
  ```
- reboot
+ `reboot`    
