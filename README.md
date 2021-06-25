@@ -1,7 +1,7 @@
 # LulzArch
 ## Base Installation
 ### Before Install
-`ls /sys/firmware/efi` to verify UEFI installation
+`ls /sys/firmware/efi` verify UEFI installation
 ### Check internet connection
 `ping -c 3 www.google.com` Check internet connection
 
@@ -43,19 +43,19 @@ Choice - nano/vim networkmanager/dhcpd
 `arch-chroot /mnt`  
 ### Setting profiles
 `ping -c 3 www.google.com` Check internet connection    
-`passwd` to set root password    
-`nano -w /etc/locale.gen` uncomment what u using (Ex. ko_KR.UTF-8)    
+`passwd` set root password    
+`nano -w /etc/locale.gen` uncomment what u using (Ex. en_US.UTF-8)    
 `locale-gen`   
-`echo LANG=ko_KR.UTF-8 > /etc/locale.conf`    
+`echo LANG=en_US.UTF-8 > /etc/locale.conf`    
 `export LANG=en_US.UTF-8`    
 `echo [PC name] > /etc/hostname`    
-`ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime` set localtime
+`ln -sf /usr/share/zoneinfo/[Continent]/[Contry] /etc/localtime` set localtime (etc. zoneinfo/Asia/Seoul)    
 `hwclock --systohc`    
 `useradd -m -g users -G wheel -s /bin/bash [username]`     
 `passwd [username]`     
 `pacman -Syu`   
 `pacman -S sudo`    
-`EDITOR=nano visudo` to setting sudo
+`EDITOR=nano visudo` sudoer setting
 ```
 // uncomment below
 ## Uncomment to allow members of group wheel to execute any command
@@ -78,6 +78,7 @@ reboot
 `reflector --country 'South Korea' --save /etc/pacman.d/mirrorlist`
 
 ### Install DE and reboot
+#### KDE/Plasma
 ```
 pacman -S --needed xorg sddm
 pacman -S --needed plasma kde-applications
