@@ -66,6 +66,6 @@ echo ""
 
 rm -rf ./archset.sh
 becho "Finished!!"
-
+becho "When Finish, Type exit"
 exit
-umount -lr /mnt
+
