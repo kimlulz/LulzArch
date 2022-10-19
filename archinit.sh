@@ -81,6 +81,7 @@ echo ""
 
 becho "3. Copy for setting on chroot"
 becho "Type ./archset.sh"
+becho "When Finish, Type exit"
 	if [ -f ./archset.sh ]; then
 		cp ./archset.sh /mnt
 		arch-chroot /mnt
@@ -90,3 +91,6 @@ becho "Type ./archset.sh"
 		arch-chroot /mnt
 	fi
 #arch-chroot /mnt ./archset.sh
+becho "Unmount..."
+umount -lr /mnt
+becho "Finished!!"
