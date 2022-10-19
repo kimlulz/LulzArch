@@ -32,7 +32,7 @@ echo ""
 
 becho "1. Make Partition Table... "
 	becho "-1. Select Disk ex)sda / nvme0n1"
-		becho "***** [/boot] *****"
+		becho "**************************"
 				lsblk
 		becho "**************************"
 		echo -n " > "; read "seldisk"
