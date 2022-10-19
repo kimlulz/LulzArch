@@ -20,7 +20,7 @@ becho "3. Setting System"
 	becho "-3. Set Language to KR"
 		sed -i 's/#ko_KR.UTF-8/ko_KR.UTF-8/g' /etc/locale.gen
 		locale-gen
-		echo LANG=en_US.UTF-8 > /etc/locale.conf
+		echo LANG=ko_KR.UTF-8 > /etc/locale.conf
 		export LANG=ko_KR.UTF-8
 	echo ""
 	becho "-4. Change hostname"
