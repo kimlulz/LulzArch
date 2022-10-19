@@ -80,6 +80,7 @@ becho "2. Init System"
 echo ""
 
 becho "3. Copy for setting on chroot"
+becho "Type ./archset.sh"
 	if [ -f ./archset.sh ]; then
 		cp ./archset.sh /mnt
 		arch-chroot /mnt
@@ -88,5 +89,4 @@ becho "3. Copy for setting on chroot"
 		cp ./archset.sh /mnt
 		arch-chroot /mnt
 	fi
-becho "Type ./archset.sh"
 #arch-chroot /mnt ./archset.sh
