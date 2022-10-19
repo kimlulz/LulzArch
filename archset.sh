@@ -51,7 +51,7 @@ becho "4. Install GRUB"
 echo ""
 
 becho "5. Install gnome"
-	sudo pacman -S xorg-xwayland gnome gnome-extra
+	sudo pacman -S xorg-xwayland gnome
 	sudo systemctl enable gdm
 echo ""
 
