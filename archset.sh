@@ -32,8 +32,9 @@ becho "3. Setting System"
 		hwclock --systohc
 	echo ""
 	becho "-6. Make Account"	
+		USRGRP=users
 		echo -n " > "; read "USER"
-		useradd -m -g users -G wheel -s /bin/bash $USER
+		useradd -m -g $USRGRP -G wheel -s /bin/bash $USER
 		echo "Input password"
 		passwd $USER
 	becho "-7 Update Packages"
@@ -58,10 +59,9 @@ becho "6. Install yay and some packages"
 	pacman -S --needed git base-devel
 	cd /opt/
 	git clone https://aur.archlinux.org/yay.git
-	cd yay
-	makepkg -si
+	chown -R $USER:$USRGRP yay
+	su - $USER -c "cd /opt/yay; makepkg -si; yay -S naver-whale-stable"
 	cd /
-	yay -S naver-whale-stable
 echo ""
 
 rm -rf ./archset.sh
