@@ -90,7 +90,7 @@ becho "When Finish, Type exit"
 		cp ./archset.sh /mnt
 		arch-chroot /mnt
 	fi
-#arch-chroot /mnt ./archset.sh
+#arch-chroot /mnt /archset.sh
 becho "Unmount..."
 umount -lr /mnt
 becho "Finished!!"
