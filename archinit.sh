@@ -59,6 +59,19 @@ becho "1. Make Partition Table... "
 		echo -n " > "; read "selroot"
 		mkfs.xfs -f /dev/$selroot
 		echo ""
+		
+		becho "***** [swap] *****"
+				lsblk
+		becho "**************************"
+		becho "If you do not need a swap partition, enter n or N"
+		echo -n " > "; read "selswap"
+		if [ $selswap = "n" -o $selswap = "N" ]; then
+			echo "Pass"
+		else
+			mkswap /dev/$selswap
+			swapon /dev/$selswap
+		fi
+		echo ""
 
 
 	becho "-3 Mount"
