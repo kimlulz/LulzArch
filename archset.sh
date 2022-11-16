@@ -11,7 +11,7 @@ function becho {
 
 becho "3. Setting System"
 	becho "-1. Init"
-		pacman -S noto-fonts-cjk sudo grub efibootmgr reflector ibus-hangul
+		pacman -S --noconfirm noto-fonts-cjk sudo grub efibootmgr reflector ibus-hangul
 		reflector --country 'South Korea' --save /etc/pacman.d/mirrorlist
 	echo ""
 	becho "-2. Set root password"
@@ -38,7 +38,7 @@ becho "3. Setting System"
 		echo "Input password"
 		passwd $USER
 	becho "-7 Update Packages"
-		pacman -Syu
+		pacman -Syu --noconfirm
 	becho "-7 Update sudoer"
 		sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
 		echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
@@ -51,16 +51,25 @@ becho "4. Install GRUB"
 echo ""
 
 becho "5. Install gnome"
-	sudo pacman -S xorg-xwayland gnome
+	sudo pacman -S --noconfirm xorg-xwayland gnome
 	sudo systemctl enable gdm
 echo ""
 
-becho "6. Install yay and some packages"
-	pacman -S --needed git base-devel
+becho "6. Install yay and install packages from aur repo"
+	pacman -S --noconfirm --needed git base-devel
 	cd /opt/
 	git clone https://aur.archlinux.org/yay.git
 	chown -R $USER:$USRGRP yay
-	su - $USER -c "cd /opt/yay; makepkg -si; yay -S naver-whale-stable"
+	su - $USER -c "cd /opt/yay; makepkg -si"
+	becho "Fastfetch.."
+		su - $USER -c "yay -S --noconfirm fastfetch; mkdir -p ~/.fastfetch"
+		wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/preset -P /home/$USER/.fastfetch && wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/pepe2.ascii -P /home/$USER/.fastfetch
+        echo "PS1='\[\e[0m\][\[\e[0;1;91m\]\u\[\e[0m\]|\[\e[0;1m\]$?\[\e[0m\]] \[\e[0;1;3;4m\]\w\[\e[0m\] \[\e[0;92m\]\$ \[\e[0m\]'" > /home/$USER/.bashrc && echo "fastfetch --load-config .fastfetch/preset -l ~/.fastfetch/pepe2.ascii" >> /home/$USER/.bashrc
+		echo ""
+	
+	becho "Visual Studio Code.."
+		su - $USER -c "yay -S --noconfirm "
+	su - $USER -c "yay -S --noconfirm naver-whale-stable"
 	cd /
 echo ""
 
