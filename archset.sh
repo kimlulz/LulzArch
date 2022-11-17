@@ -11,7 +11,7 @@ function becho {
 
 becho "3. Setting System"
 	becho "-1. Init"
-		pacman -S --noconfirm wget noto-fonts-cjk sudo grub efibootmgr reflector ibus-hangul systemd-sysvcompat
+		pacman -S --noconfirm wget noto-fonts-cjk sudo grub efibootmgr reflector ibus-hangul
 		reflector --country 'South Korea' --save /etc/pacman.d/mirrorlist
 	echo ""
 	becho "-2. Set root password"
@@ -91,7 +91,7 @@ becho "6. Install yay and install packages from aur repo"
 	case $VSCD in
 		1) pacman -S --noconfirm code;;
         2) su - $USER -c "yay -S --noconfirm visual-studio-code-bin";;
-        3) su - $USER -c "yay -S --noconfirm vscodium";;
+        3) su - $USER -c "yay -S --noconfirm vscodium-bin";;
 		*) echo "Invalid response, try again"; continue;;
     esac; break; done; echo ""
 
