@@ -97,11 +97,11 @@ becho "6. Install yay and install packages from aur repo"
 
 	becho "Zsh.."
 		pacman -S --noconfirm zsh
-		sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-		chsh -s /usr/bin/zsh
-        curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-        wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/.zshrc && mv .zshrc /home/$USER/.zshrc
-        echo "fastfetch --load-config .fastfetch/preset" >> /.zshrc
+		su - $USER -c "sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended"
+		su - $USER -c "chsh -s /usr/bin/zsh"
+        su - $USER -c "curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh"
+		su - $USER -c "wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/.zshrc && mv .zshrc /home/$USER/.zshrc"
+        su - $USER -c "echo 'fastfetch --load-config .fastfetch/preset' >> /home/$USER/.zshrc"
 	echo ""
 
 	becho "Browser.."
