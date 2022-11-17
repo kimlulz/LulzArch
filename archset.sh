@@ -11,7 +11,7 @@ function becho {
 
 becho "3. Setting System"
 	becho "-1. Init"
-		pacman -S --noconfirm noto-fonts-cjk sudo grub efibootmgr reflector ibus-hangul
+		pacman -S --noconfirm noto-fonts-cjk sudo grub efibootmgr reflector ibus-hangul systemd-sysvcompat
 		reflector --country 'South Korea' --save /etc/pacman.d/mirrorlist
 	echo ""
 	becho "-2. Set root password"
@@ -67,11 +67,61 @@ becho "6. Install yay and install packages from aur repo"
         echo "PS1='\[\e[0m\][\[\e[0;1;91m\]\u\[\e[0m\]|\[\e[0;1m\]$?\[\e[0m\]] \[\e[0;1;3;4m\]\w\[\e[0m\] \[\e[0;92m\]\$ \[\e[0m\]'" > /home/$USER/.bashrc && echo "fastfetch --load-config .fastfetch/preset -l ~/.fastfetch/pepe2.ascii" >> /home/$USER/.bashrc
 		echo ""
 	
+	becho "Hyper Terminal.."
+		su - $USER -c "yay -S --noconfirm hyper-bin"
+		su - $USER -c "hyper"
+        sed -i "s/fontFamily: '/fontFamily : 'MesloLGS NF, /g" /home/$USER/.hyper.js
+		mkdir /home/$USER/.local/share/fonts
+        wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -P /home/$USER/.local/share/fonts
+        wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -P /home/$USER/.local/share/fonts
+        wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -P /home/$USER/.local/share/fonts
+        wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -P /home/$USER/.local/share/fonts
+		su - $USER -c "fc-cache -f -v"
+		echo ""
+
 	becho "Visual Studio Code.."
-		su - $USER -c "yay -S --noconfirm "
-	su - $USER -c "yay -S --noconfirm naver-whale-stable"
+	while :; do
+		becho "*************************************************"
+        becho "(1) Code - OSS | Official Arch Linux open-source release" 
+        becho "(2) Visual Studio Code | Proprietary Microsoft-branded release."
+        becho "(3) VSCodium | Community open-source release."
+        becho "*************************************************"
+        becho "[1/2/3/ > " ; read VSCD
+	
+	case $VSCD in
+		1) pacman -S --noconfirm code;;
+        2) su - $USER -c "yay -S --noconfirm visual-studio-code-bin";;
+        3) su - $USER -c "yay -S --noconfirm vscodium";;
+		*) echo "Invalid response, try again"; continue;;
+    esac; break; done; echo ""
+
+	becho "Zsh.."
+		pacman -S zsh
+		sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+		chsh -s /usr/bin/zsh
+        curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+        wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/.zshrc && mv .zshrc /home/$USER/.zshrc
+        echo "fastfetch --load-config .fastfetch/preset -l ~/.fastfetch/pepe2.ascii" >> /.zshrc
+	echo ""
+
+	becho "Browser.."
+	while :; do
+        becho "*************************************************"
+        becho "(1) Google Chrome | Google Chromium" 
+        becho "(2) Chromium | Stable release of Chromium"
+        becho "(3) Ungoogled-Chromium | Build | from github"
+        becho "(4) Naver Whale | Package | from naver"
+        becho "*************************************************"
+        becho "[1/2/3/4] > " ; read BRWS
+        
+	case $BRWS in
+        1) su - $USER -c "yay -S --noconfirm google-chrome";;
+        2) pacman -S --noconfirm chromium;;
+		3) su - $USER -c "yay -S --noconfirm ungoogled-chromium-bin";;
+		4) su - $USER -c "yay -S --noconfirm naver-whale-stable";;
+		*) echo "Invalid response, try again"; continue;;
+    esac; break; done; echo ""
 	cd /
-echo ""
 
 rm -rf ./archset.sh
 becho "Finished!!"
