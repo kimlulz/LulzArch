@@ -65,7 +65,6 @@ becho "6. Install yay and install packages from aur repo"
 	becho "Fastfetch.."
 		su - $USER -c "yay -S --noconfirm fastfetch; mkdir -p ~/.fastfetch"
 		wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/preset -P /home/$USER/.fastfetch
-		echo "PS1='\[\e[0m\][\[\e[0;1;91m\]\u\[\e[0m\]|\[\e[0;1m\]$?\[\e[0m\]] \[\e[0;1;3;4m\]\w\[\e[0m\] \[\e[0;92m\]\$ \[\e[0m\]'" > /home/$USER/.bashrc && echo "fastfetch --load-config .fastfetch/preset" >> /home/$USER/.bashrc
 		echo ""
 	
 	becho "Hyper Terminal.."
@@ -104,6 +103,9 @@ becho "6. Install yay and install packages from aur repo"
 		su - $USER -c "wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/.zshrc && mv .zshrc /home/$USER/.zshrc"
         su - $USER -c "echo 'fastfetch --load-config .fastfetch/preset' >> /home/$USER/.zshrc"
 	echo ""
+
+	becho "Customize .bashrc"
+		echo "PS1='\[\e[0m\][\[\e[0;1;91m\]\u\[\e[0m\]|\[\e[0;1m\]$?\[\e[0m\]] \[\e[0;1;3;4m\]\w\[\e[0m\] \[\e[0;92m\]\$ \[\e[0m\]'" > /home/$USER/.bashrc && echo "fastfetch --load-config .fastfetch/preset" >> /home/$USER/.bashrc
 
 	becho "Browser.."
 	while :; do
