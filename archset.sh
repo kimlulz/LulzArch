@@ -97,7 +97,7 @@ becho "6. Install yay and install packages from aur repo"
     esac; break; done; echo ""
 
 	becho "Zsh.."
-		pacman -S zsh
+		pacman -S --noconfirm zsh
 		sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 		chsh -s /usr/bin/zsh
         curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
