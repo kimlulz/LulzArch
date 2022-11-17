@@ -97,6 +97,7 @@ becho "6. Install yay and install packages from aur repo"
 
 	becho "Zsh.."
 		pacman -S --noconfirm zsh
+		becho "PASSWORD REQUIRED"
 		su - $USER -c "sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended"
 		su - $USER -c "chsh -s /usr/bin/zsh"
         su - $USER -c "curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh"
