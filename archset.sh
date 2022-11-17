@@ -11,7 +11,7 @@ function becho {
 
 becho "3. Setting System"
 	becho "-1. Init"
-		pacman -S --noconfirm noto-fonts-cjk sudo grub efibootmgr reflector ibus-hangul systemd-sysvcompat
+		pacman -S --noconfirm wget noto-fonts-cjk sudo grub efibootmgr reflector ibus-hangul systemd-sysvcompat
 		reflector --country 'South Korea' --save /etc/pacman.d/mirrorlist
 	echo ""
 	becho "-2. Set root password"
