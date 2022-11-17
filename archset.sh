@@ -64,8 +64,8 @@ becho "6. Install yay and install packages from aur repo"
 	
 	becho "Fastfetch.."
 		su - $USER -c "yay -S --noconfirm fastfetch; mkdir -p ~/.fastfetch"
-		wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/preset -P /home/$USER/.fastfetch && wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/pepe2.ascii -P /home/$USER/.fastfetch
-		echo "PS1='\[\e[0m\][\[\e[0;1;91m\]\u\[\e[0m\]|\[\e[0;1m\]$?\[\e[0m\]] \[\e[0;1;3;4m\]\w\[\e[0m\] \[\e[0;92m\]\$ \[\e[0m\]'" > /home/$USER/.bashrc && echo "fastfetch --load-config .fastfetch/preset -l ~/.fastfetch/pepe2.ascii" >> /home/$USER/.bashrc
+		wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/preset -P /home/$USER/.fastfetch
+		echo "PS1='\[\e[0m\][\[\e[0;1;91m\]\u\[\e[0m\]|\[\e[0;1m\]$?\[\e[0m\]] \[\e[0;1;3;4m\]\w\[\e[0m\] \[\e[0;92m\]\$ \[\e[0m\]'" > /home/$USER/.bashrc && echo "fastfetch --load-config .fastfetch/preset" >> /home/$USER/.bashrc
 		echo ""
 	
 	becho "Hyper Terminal.."
@@ -76,7 +76,7 @@ becho "6. Install yay and install packages from aur repo"
 		wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -P /home/$USER/.local/share/fonts
 		wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -P /home/$USER/.local/share/fonts
 		su - $USER -c "fc-cache -f -v"
-		wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/.hyper.js -P /home/$USER/.hyper.js
+		wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/.hyper.js -P /home/$USER/
 		echo ""
 
 	becho "Visual Studio Code.."
@@ -101,7 +101,7 @@ becho "6. Install yay and install packages from aur repo"
 		chsh -s /usr/bin/zsh
         curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
         wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/.zshrc && mv .zshrc /home/$USER/.zshrc
-        echo "fastfetch --load-config .fastfetch/preset -l ~/.fastfetch/pepe2.ascii" >> /.zshrc
+        echo "fastfetch --load-config .fastfetch/preset" >> /.zshrc
 	echo ""
 
 	becho "Browser.."
