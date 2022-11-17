@@ -23,10 +23,8 @@ function check_fail {
 	fi
 }
 
-becho "0. Checking internet connectivity... "
+becho "0. Init... "
 	pacman -S curl wget
-	wget -q --tries=10 --timeout=20 --spider http://www.google.com
-	check_fail $?
 echo ""
 
 
