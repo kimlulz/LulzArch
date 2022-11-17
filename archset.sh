@@ -70,7 +70,7 @@ becho "6. Install yay and install packages from aur repo"
 	
 	becho "Hyper Terminal.."
 		su - $USER -c "yay -S --noconfirm hyper-bin"
-		su - $USER -c "hyper"
+		su - $USER -c "hyper; sleep 3; killall hyper" 
 		sed -i "s/fontFamily: '/fontFamily : 'MesloLGS NF, /g" /home/$USER/.hyper.js
 		mkdir /home/$USER/.local/share/fonts
 		wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -P /home/$USER/.local/share/fonts
@@ -87,7 +87,7 @@ becho "6. Install yay and install packages from aur repo"
         becho "(2) Visual Studio Code | Proprietary Microsoft-branded release."
         becho "(3) VSCodium | Community open-source release."
         becho "*************************************************"
-        becho "[1/2/3/ > " ; read VSCD
+        becho "[1/2/3] > " ; read VSCD
 	
 	case $VSCD in
 		1) pacman -S --noconfirm code;;
