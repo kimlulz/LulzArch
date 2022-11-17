@@ -101,11 +101,11 @@ becho "6. Install yay and install packages from aur repo"
 		su - $USER -c "chsh -s /usr/bin/zsh"
         su - $USER -c "curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh"
 		su - $USER -c "wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/.zshrc && mv .zshrc /home/$USER/.zshrc"
-        su - $USER -c "echo 'fastfetch --load-config .fastfetch/preset' >> /home/$USER/.zshrc"
+        su - $USER -c "echo 'fastfetch --load-config ~/.fastfetch/preset' >> /home/$USER/.zshrc"
 	echo ""
 
 	becho "Customize .bashrc"
-		echo "PS1='\[\e[0m\][\[\e[0;1;91m\]\u\[\e[0m\]|\[\e[0;1m\]$?\[\e[0m\]] \[\e[0;1;3;4m\]\w\[\e[0m\] \[\e[0;92m\]\$ \[\e[0m\]'" > /home/$USER/.bashrc && echo "fastfetch --load-config .fastfetch/preset" >> /home/$USER/.bashrc
+		echo "PS1='\[\e[0m\][\[\e[0;1;91m\]\u\[\e[0m\]|\[\e[0;1m\]$?\[\e[0m\]] \[\e[0;1;3;4m\]\w\[\e[0m\] \[\e[0;92m\]\$ \[\e[0m\]'" > /home/$USER/.bashrc && echo "fastfetch --load-config ~/.fastfetch/preset" >> /home/$USER/.bashrc
 
 	becho "Browser.."
 	while :; do
