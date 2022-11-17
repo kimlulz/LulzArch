@@ -70,14 +70,13 @@ becho "6. Install yay and install packages from aur repo"
 	
 	becho "Hyper Terminal.."
 		su - $USER -c "yay -S --noconfirm hyper-bin"
-		su - $USER -c "hyper; sleep 5; killall hyper" 
 		mkdir /home/$USER/.local/share/fonts
 		wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -P /home/$USER/.local/share/fonts
 		wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -P /home/$USER/.local/share/fonts
 		wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -P /home/$USER/.local/share/fonts
 		wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -P /home/$USER/.local/share/fonts
 		su - $USER -c "fc-cache -f -v"
-		sed -i "s/fontFamily: '/fontFamily : 'MesloLGS NF, /g" /home/$USER/.hyper.js
+		wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/.hyper.js -P /home/$USER/.hyper.js
 		echo ""
 
 	becho "Visual Studio Code.."
