@@ -14,20 +14,6 @@ function ach {
 	echo ""
 }
 
-function check_fail {
-	if [[ $1 -ne 0 ]]; then
-		>&2 echo "FAIL!"
-		exit 1
-	else
-		>&2 echo "OK!"
-	fi
-}
-
-becho "0. Init... "
-	pacman -S curl wget
-echo ""
-
-
 becho "1. Make Partition Table... "
 	becho "-1. Select Disk ex)sda / nvme0n1"
 		becho "**************************"
@@ -97,6 +83,7 @@ becho "When Finish, Type exit"
 		cp ./archset.sh /mnt
 		arch-chroot /mnt
 	else
+		pacman -S wget
 		wget https://raw.githubusercontent.com/kimlulz/lulzarch/main/archset.sh
 		cp ./archset.sh /mnt
 		arch-chroot /mnt
