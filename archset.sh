@@ -124,15 +124,16 @@ becho "6. Install yay and install packages from aur repo"
 		4) su - $USER -c "yay -S --noconfirm naver-whale-stable";;
 		*) echo "Invalid response, try again"; continue;;
     esac; break; done; echo ""
-	cd /
-	
-	becho "Gnome Extentions..."
-		wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
-		chmod +x gnome-shell-extension-installer
-		su - $USER -c "./gnome-shell-extension-installer 307"
-		rm -rf ./gnome-shell-extension-installer
 
-	
+	becho "Gnome Extentions..."
+		cd /home/$USER/
+		su - $USER -c "wget -O gnome-shell-extension-installer -P /home/$USER `https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer`"
+		su - $USER -c "chmod +x gnome-shell-extension-installer"
+		su - $USER -c "/gnome-shell-extension-installer 307"
+		rm -rf ./gnome-shell-extension-installer
+		echo ""
+	cd /
+
 rm -rf ./archset.sh
 becho "Finished!!"
 becho "When Finish, Type exit"
