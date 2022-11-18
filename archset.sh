@@ -132,6 +132,7 @@ becho "6. Install yay and install packages from aur repo"
 		./gnome-shell-extension-installer 307
 
 rm -rf ./archset.sh
+rm -rf ./gnome-shell-extension-installer
 becho "Finished!!"
 becho "When Finish, Type exit"
 exit
