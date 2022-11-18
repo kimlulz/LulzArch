@@ -64,18 +64,18 @@ becho "6. Install yay and install packages from aur repo"
 	
 	becho "Fastfetch.."
 		su - $USER -c "yay -S --noconfirm fastfetch; mkdir -p ~/.fastfetch"
-		wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/preset -P /home/$USER/.fastfetch
+		su - $USER -c "wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/preset -P /home/$USER/.fastfetch"
 		echo ""
 	
 	becho "Hyper Terminal.."
 		su - $USER -c "yay -S --noconfirm hyper-bin"
-		mkdir /home/$USER/.local/share/fonts
-		wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -P /home/$USER/.local/share/fonts
-		wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -P /home/$USER/.local/share/fonts
-		wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -P /home/$USER/.local/share/fonts
-		wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -P /home/$USER/.local/share/fonts
+		su - $USER -c "mkdir /home/$USER/.local/share/fonts"
+		su - $USER -c "wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -P /home/$USER/.local/share/fonts"
+		su - $USER -c "wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -P /home/$USER/.local/share/fonts"
+		su - $USER -c "wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -P /home/$USER/.local/share/fonts"
+		su - $USER -c "wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -P /home/$USER/.local/share/fonts"
 		su - $USER -c "fc-cache -f -v"
-		wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/.hyper.js -P /home/$USER/
+		su - $USER -c "wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/.hyper.js -P /home/$USER/"
 		echo ""
 
 	becho "Visual Studio Code.."
@@ -125,6 +125,11 @@ becho "6. Install yay and install packages from aur repo"
 		*) echo "Invalid response, try again"; continue;;
     esac; break; done; echo ""
 
+	becho "Gnome Extentions..."
+		su - $USER -c "yay -S --noconfirm gnome-shell-extension-installer"
+		su - $USER -c "gnome-shell-extension-installer 307"
+		su - $USER -c "yay -R --noconfirm gnome-shell-extension-installer"
+		echo ""
 	cd /
 
 rm -rf ./archset.sh
