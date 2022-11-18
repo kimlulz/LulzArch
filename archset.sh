@@ -128,6 +128,7 @@ becho "6. Install yay and install packages from aur repo"
 	becho "Gnome Extentions..."
 		su - $USER -c "yay -S --noconfirm gnome-shell-extension-installer"
 		su - $USER -c "gnome-shell-extension-installer 307"
+		su - $USER -c "gnome-extensions enable dash-to-dock@micxgx.gmail.com"
 		su - $USER -c "yay -R --noconfirm gnome-shell-extension-installer"
 		echo ""
 	cd /
