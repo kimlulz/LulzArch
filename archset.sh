@@ -51,7 +51,7 @@ becho "4. Install GRUB"
 echo ""
 
 becho "5. Install gnome"
-	sudo pacman -S --noconfirm xorg-xwayland gnome
+	sudo pacman -S --noconfirm xorg-xwayland gnome gnome-shell-extensions 
 	sudo systemctl enable gdm
 echo ""
 
@@ -125,6 +125,11 @@ becho "6. Install yay and install packages from aur repo"
 		*) echo "Invalid response, try again"; continue;;
     esac; break; done; echo ""
 	cd /
+	
+	becho "Gnome Extentions..."
+		wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
+		chmod +x gnome-shell-extension-installer
+		./gnome-shell-extension-installer 307
 
 rm -rf ./archset.sh
 becho "Finished!!"
