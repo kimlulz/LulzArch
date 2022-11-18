@@ -127,7 +127,7 @@ becho "6. Install yay and install packages from aur repo"
 
 	becho "Gnome Extentions..."
 		cd /home/$USER/
-		su - $USER -c "wget -O gnome-shell-extension-installer -P /home/$USER `https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer`"
+		su - $USER -c "wget -P /home/$USER https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
 		su - $USER -c "chmod +x gnome-shell-extension-installer"
 		su - $USER -c "/gnome-shell-extension-installer 307"
 		rm -rf ./gnome-shell-extension-installer
