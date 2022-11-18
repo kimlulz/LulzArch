@@ -130,9 +130,10 @@ becho "6. Install yay and install packages from aur repo"
 		wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
 		chmod +x gnome-shell-extension-installer
 		./gnome-shell-extension-installer 307
+		rm -rf ./gnome-shell-extension-installer
 
+	
 rm -rf ./archset.sh
-rm -rf ./gnome-shell-extension-installer
 becho "Finished!!"
 becho "When Finish, Type exit"
 exit
