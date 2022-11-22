@@ -57,7 +57,7 @@ becho "5. Install gnome"
 echo ""
 
 becho "6. Install yay and install packages from aur repo"
-	pacman -S --noconfirm --needed git base-devel
+	pacman -S --noconfirm --needed git base-devel go
 	cd /opt/
 	git clone https://aur.archlinux.org/yay.git
 	chown -R $USER:$USRGRP yay
