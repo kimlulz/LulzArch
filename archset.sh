@@ -41,7 +41,8 @@ becho "3. Setting System"
 		pacman -Syu --noconfirm
 	becho "-7 Update sudoer"
 		sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
-		echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers #문법오류 발생
+		#echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers #문법오류 발생
+		sed -i "s/ALL=(ALL) NOPASSWD:ALL/$USER ALL=(ALL) NOPASSWD:ALL/g" /etc/sudoers
 echo ""
 
 becho "4. Install GRUB"
