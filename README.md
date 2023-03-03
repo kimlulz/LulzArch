@@ -4,6 +4,8 @@ Installation Script of Arch Linux
 
 type `./archinit.sh` to start
 
+## Process
+
 1. Make Partition and mount
 
 2. pacstrap and Generate UUID
