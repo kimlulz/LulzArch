@@ -4,6 +4,8 @@ Installation Script of Arch Linux
 
 type `./archinit.sh` to start
 
+> Caution ) its script optimized for the Korean environment.<br>When using it, Modify it according to your own environment 
+
 ## Process
 
 1. Make Partition and mount
