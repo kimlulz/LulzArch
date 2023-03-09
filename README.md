@@ -15,7 +15,7 @@ type `./archinit.sh` to start
     2. use reflector to change mirror(Korea) 
     3. Set Languages to Korean
     4. Set Hostname, Time Zone, Sudoer(is not working correctly..)
-    5. Install GRUB (will have to change `Systemd-boot`
+    5. Install `Systemd-boot`
     6. Install Gnome DE
     7. Install YAY and some packages from AUR
         1. Fastfetch (Neofetch, but written in C)

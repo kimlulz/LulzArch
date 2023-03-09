@@ -11,7 +11,7 @@ function becho {
 
 becho "3. Setting System"
 	becho "-1. Init"
-		pacman -S --noconfirm wget noto-fonts-cjk sudo grub efibootmgr reflector ibus-hangul
+		pacman -S --noconfirm wget noto-fonts-cjk sudo efibootmgr reflector ibus-hangul
 		reflector --country 'South Korea' --save /etc/pacman.d/mirrorlist
 	echo ""
 	becho "-2. Set root password"
@@ -41,15 +41,37 @@ becho "3. Setting System"
 		pacman -Syu --noconfirm
 	becho "-7 Update sudoer"
 		sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
-		#echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers #문법오류 발생
-		sed -i "s/ALL=(ALL) NOPASSWD:ALL/$USER ALL=(ALL) NOPASSWD:ALL/g" /etc/sudoers
+		echo "$USER ALL=(ALL) ALL" >> /etc/sudoers
 echo ""
 
-becho "4. Install GRUB"
-	grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch --recheck
-	grub-mkconfig -o /boot/grub/grub.cfg
-	systemctl enable NetworkManager
-echo ""
+#becho "4. Install GRUB"
+#	grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch --recheck
+#	grub-mkconfig -o /boot/grub/grub.cfg
+#	systemctl enable NetworkManager
+#echo ""
+becho "4. Install Bootloader"
+	echo "*****************************"
+	echo "* Bootloader : systemd-boot *"
+	echo "*****************************"
+	echo "Install..."
+	bootctl --esp-path=/boot install
+
+	echo "Configure loader"
+	touch /boot/loader/loader.conf
+#
+echo "default arch
+timeout 3
+editor 1" > /boot/loader/loader.conf
+#
+
+	echo "Create boot entries"
+	touch /boot/loader/entries/arch.conf
+#
+echo "title ArchLinux
+linux /vmlinuz-linux
+initrd /initramfs-linux.img
+options root=/dev/sda2 rw" > /boot/loader/entries/arch.conf
+
 
 becho "5. Install gnome"
 	sudo pacman -S --noconfirm xorg-xwayland gnome gnome-shell-extensions 
@@ -62,6 +84,28 @@ becho "6. Install yay and install packages from aur repo"
 	git clone https://aur.archlinux.org/yay.git
 	chown -R $USER:$USRGRP yay
 	su - $USER -c "cd /opt/yay; makepkg -si"
+
+	becho "Checking for yay..."
+		if which yay >/dev/null; then
+  			echo "yay is installed correctly!"
+  			echo "pass"
+		else
+  			echo "yay is not installed correctly. Reinstall now..."
+			pacman -S --noconfirm --needed git base-devel go
+			cd /opt/
+			git clone https://aur.archlinux.org/yay.git
+			chown -R $USER:$USRGRP yay
+			su - $USER -c "cd /opt/yay; makepkg -si"
+			if which yay >/dev/null; then
+  				echo "yay is installed! correctly"
+			else
+				echo "yay still not installed correctly. Please install yay manually..."
+				echo "When the shell logined as $USER, Please type like below" ; echo ""
+				echo "cd /opt/yay" 
+				echo "makepkg -si" ; echo ""
+				echo "and type exit to proceed the next step of the script."; sleep 3
+				su - $USER
+			fi
 	
 	becho "Fastfetch.."
 		su - $USER -c "yay -S --noconfirm fastfetch; mkdir -p ~/.fastfetch"
