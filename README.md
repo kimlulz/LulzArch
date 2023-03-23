@@ -17,7 +17,7 @@ type `./archinit.sh` to start
     2. use reflector to change mirror(Korea) 
     3. Set Languages to Korean
     4. Set Hostname, Time Zone, Sudoer(is not working correctly..)
-    5. Install `Systemd-boot`
+    5. Install `GRUB`
     6. Install Gnome DE
     7. Install YAY and some packages from AUR
         1. Fastfetch (Neofetch, but written in C)
@@ -40,7 +40,6 @@ type `./archinit.sh` to start
         | **Ungoogled-Chromium** | Build from github |
         | **Naver Whale** | Chromium-Based Browsers made by Naver(Korea) |
         
-    8. Gnome-Extensions (Not Works)
     9. Remove archset.sh
     10. Type `exit` to finish
 4. Unmount 
