@@ -56,33 +56,12 @@ echo ""
 
 becho "6. Install yay and install packages from aur repo"
 	pacman -S --noconfirm --needed git base-devel go
-	cd /opt/
-	git clone https://aur.archlinux.org/yay.git
-	chown -R $USER:$USRGRP yay
-	su - $USER -c "cd /opt/yay; makepkg -si"
+	mkdir /home/$USER/.local/opt
+	git clone https://aur.archlinux.org/yay.git /home/$USER/.local/opt
+	chown -R $USER:$$USER /home/$USER/.local/opt
+	chown -R $USER:$$USER /home/$USER/.local/opt/*
+	su - $USER -c "cd /home/$USER/.local/opt && makepkg -si"
 
-	becho "Checking for yay..."
-		if which yay >/dev/null; then
-  			echo "yay is installed correctly!"
-  			echo "pass"
-		else
-  			echo "yay is not installed correctly. Reinstall now..."
-			pacman -S --noconfirm --needed git base-devel go
-			cd /opt/
-			git clone https://aur.archlinux.org/yay.git
-			chown -R $USER:$USRGRP yay
-			su - $USER -c "cd /opt/yay; makepkg -si"
-			if which yay >/dev/null; then
-  				echo "yay is installed! correctly"
-			else
-				echo "yay still not installed correctly. Please install yay manually..."
-				echo "When the shell logined as $USER, Please type like below" ; echo ""
-				echo "cd /opt/yay" 
-				echo "makepkg -si" ; echo ""
-				echo "and type exit to proceed the next step of the script."; sleep 3
-				su - $USER
-			fi
-	
 	becho "Fastfetch.."
 		su - $USER -c "yay -S --noconfirm fastfetch; mkdir -p ~/.fastfetch"
 		su - $USER -c "wget https://raw.githubusercontent.com/kimlulz/dotfiles/main/zsh/preset -P /home/$USER/.fastfetch"
@@ -145,13 +124,6 @@ becho "6. Install yay and install packages from aur repo"
 		4) su - $USER -c "yay -S --noconfirm naver-whale-stable";;
 		*) echo "Invalid response, try again"; continue;;
     esac; break; done; echo ""
-
-	becho "Gnome Extentions..."
-		su - $USER -c "yay -S --noconfirm gnome-shell-extension-installer"
-		su - $USER -c "gnome-shell-extension-installer 307"
-		su - $USER -c "gnome-extensions enable dash-to-dock@micxgx.gmail.com"
-		su - $USER -c "yay -R --noconfirm gnome-shell-extension-installer"
-		echo ""
 	cd /
 
 rm -rf ./archset.sh
