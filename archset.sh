@@ -32,9 +32,8 @@ becho "3. Setting System"
 		hwclock --systohc
 	echo ""
 	becho "-6. Make Account"	
-		USRGRP=users
 		echo -n " > "; read "USER"
-		useradd -m -g $USRGRP -G wheel -s /bin/bash $USER
+		useradd -m -g $USER -G wheel -s /bin/bash $USER
 		echo "Input password"
 		passwd $USER
 	becho "-7 Update Packages"
@@ -44,34 +43,11 @@ becho "3. Setting System"
 		echo "$USER ALL=(ALL) ALL" >> /etc/sudoers
 echo ""
 
-#becho "4. Install GRUB"
-#	grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch --recheck
-#	grub-mkconfig -o /boot/grub/grub.cfg
-#	systemctl enable NetworkManager
-#echo ""
-becho "4. Install Bootloader"
-	echo "*****************************"
-	echo "* Bootloader : systemd-boot *"
-	echo "*****************************"
-	echo "Install..."
-	bootctl --esp-path=/boot install
-
-	echo "Configure loader"
-	touch /boot/loader/loader.conf
-#
-echo "default arch
-timeout 3
-editor 1" > /boot/loader/loader.conf
-#
-
-	echo "Create boot entries"
-	touch /boot/loader/entries/arch.conf
-#
-echo "title ArchLinux
-linux /vmlinuz-linux
-initrd /initramfs-linux.img
-options root=/dev/sda2 rw" > /boot/loader/entries/arch.conf
-
+becho "4. Install GRUB"
+	grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch --recheck
+	grub-mkconfig -o /boot/grub/grub.cfg
+	systemctl enable NetworkManager
+echo ""
 
 becho "5. Install gnome"
 	sudo pacman -S --noconfirm xorg-xwayland gnome gnome-shell-extensions 
